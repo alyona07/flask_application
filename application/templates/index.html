@@ -2,9 +2,9 @@
 <html>
 
 <body>
- <title>HELLO</title>
+ <title>{{ data.title }}</title>
 
-    <h1>Hello World!</h1>
+    <h1>{{ data.header }}</h1>
  <table width="95%" border="2" cellspacing="1" bordercolor="#FF0000">
      <tr>
       <td align="center" width="33%" height="100px" bgcolor="#32CD32">ячейка 1</td>
@@ -17,6 +17,21 @@
     <td align="center" width="33%" height="100px" bgcolor="#9370DB">ячейка 6</td>
    </tr>
   </table>
+
+<hr>
+<hr>
+
+ <table width="95%" border="2" cellspacing="1" bordercolor="#FF0000">
+     {% for line in data.lines %}
+     <tr>
+         {% for cell in line.columns %}
+            <td align="center" height="100px" bgcolor="#0000DB">{{ cell }}</td>
+            <td align="center" height="100px" bgcolor="#FF0CDB">{{ cell }}</td>
+            <td align="center" height="100px" bgcolor="#00CD00">{{ cell }}</td>
+         {% endfor %}
+     </tr>
+      {% endfor %}
+</table>
 
 
 </body>
