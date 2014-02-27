@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html>
+<style>
+    table {
+            border: 1px solid #DDD;
+            width: 100%;
+            border-collapse: collapse;
+          }
+
+    table thead th, table tbody td {
+                                    border: 1px solid #DDD;
+                                    padding: 5px 7px;
+                                   }
+
+    table tbody tr:nth-child(odd) td {
+                                      background-color: #0000DB;
+                                     }
+</style>
 
 <body>
  <title>{{ data.title }}</title>
@@ -12,9 +28,9 @@
       <td align="center" width="33%" height="" bgcolor="#F4A460">ячейка 3</td>
     </tr>
     <tr>
-    <td align="center" width="33%" height="100px" bgcolor="#FF8C00">ячейка 4</td>
-    <td align="center" width="33%" height="100px" bgcolor="#EE82EE">ячейка 5</td>
-    <td align="center" width="33%" height="100px" bgcolor="#9370DB">ячейка 6</td>
+    <td align="center" width="33%" height="100px" bgcolor="#C41E3A">ячейка 4</td>
+    <td align="center" width="33%" height="100px" bgcolor="#0FFDB9">ячейка 5</td>
+    <td align="center" width="33%" height="100px" bgcolor="#990066">ячейка 6</td>
    </tr>
   </table>
 
@@ -25,7 +41,8 @@
      {% for line in data.lines %}
      <tr>
          {% for cell in line.columns %}
-            <td align="center" height="100px" bgcolor="#0000DB">{{ cell }}</td>
+
+            <td align="center" height="100px" bgcolor="#791776">{{ cell}}</td>
             <td align="center" height="100px" bgcolor="#FF0CDB">{{ cell }}</td>
             <td align="center" height="100px" bgcolor="#00CD00">{{ cell }}</td>
          {% endfor %}
