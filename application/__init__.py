@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """
-    just a test enter
+    Just a test enter
     """
     data = {
             "title": "Super Test",
