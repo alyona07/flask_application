@@ -1,15 +1,15 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def index():
     """
     Just a test enter
     """
-    data = {
+    data_new = {"layout": "Some text",
             "title": "Super Test",
             "header": "HE-HE-HE-HE... Hello World!!",
             "lines": [
@@ -19,9 +19,30 @@ def index():
                 {"title": "1", "columns": ["fourth_30", "fourth_31", "fourth_32", "fourth_33"]},
             ]
     }
+    if request.method == 'POST':
+        word = str(request.form['text'])
+        some = str(request.form['text1'])
 
-    return render_template('index.html', data=data)
+    else:
+        word = str(request.args.get('text'))
+        some = str(request.args.get('text1'))
+
+
+    return render_template('index.html', word={'entered': [word , some]}, data_new = data_new, data = {} )
+
+
+
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000)
 
+def word():
+    if request.method == 'POST':
+        word = str(request.form['text'])
+        lang = str(request.form['lang'])
+    else:
+        word = str(request.args.get('text'))
+        lang = str(request.args.get('lang'))
+
+    if word == 'None' and lang == 'None':
+        return render_template('index.html', word={'entered': word}, data={})

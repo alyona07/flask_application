@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
 
+<form>
+<input value="{{ word.entered }}" name="text">
+
+
+</form>
 
 <body>
- <title>{{ data.title }}</title>
+<form action="{{data.title}}" enctype="form-data" method="GET">
+<input value="{{ data.layout }}" name="text">
+<input value="{{ data.some }}" name="text1">
+<input type="submit" value="  GO  ">
 
-    <h1>{{ data.header }}</h1>
+    </form>
+ <title>{{ data_new.title }}</title>
+
+    <h1>{{ data_new.header }}</h1>
  <table width="95%" border="2" cellspacing="1" bordercolor="#FF0000">
      <tr>
       <td align="center" width="33%" height="100px" bgcolor="#32CD32">ячейка 1</td>
@@ -23,7 +34,7 @@
 <hr>
 
  <table width="95%" border="2" cellspacing="1" bordercolor="#FF0000">
-     {% for line in data.lines %}
+     {% for line in data_new.lines %}
          {% if line.title == "0" %}
              <tr bgcolor="#32CD32">
              {% for cell in line.columns %}
@@ -40,3 +51,4 @@
 </table>
 </body>
 </html>
+
