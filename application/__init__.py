@@ -2,13 +2,11 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-
-
-@app.route('/', methods = ['GET', 'POST'])
-def index():
+@app.route('/table')
+def table():
     """
-    Just a test enter
-    """
+Just a test enter
+"""
     data_new = {"layout": "Some text",
             "title": "Super Test",
             "header": "HE-HE-HE-HE... Hello World!!",
@@ -19,30 +17,38 @@ def index():
                 {"title": "1", "columns": ["fourth_30", "fourth_31", "fourth_32", "fourth_33"]},
             ]
     }
+    f = open("text.txt", "r")
+    f.readline()
+    for i in range(0, len(data_new["lines"]), 1):
+        data_new["lines"][i]["columns"] = list(f.readline().split())
+    return render_template('table.html', data_new = data_new)
+
+@app.route('/', methods = ['GET', 'POST'])
+def index():
     if request.method == 'POST':
         word = str(request.form['text'])
-        some = str(request.form['text1'])
+        some1 = str(request.form['text1'])
+        some2 = str(request.form['text2'])
+        some3 = str(request.form['text3'])
 
     else:
         word = str(request.args.get('text'))
-        some = str(request.args.get('text1'))
+        some1 = str(request.args.get('text1'))
+        some2 = str(request.args.get('text2'))
+        some3 = str(request.args.get('text3'))
+    f = open('text.txt', 'a')
+    f.write(word)
+    f.write('\t')
+    f.write(some1)
+    f.write('\t')
+    f.write(some2)
+    f.write('\t')
+    f.write(some3)
+    f.write('\n')
+    f.close()
 
-
-    return render_template('index.html', word={'entered': [word , some]}, data_new = data_new, data = {} )
-
-
-
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000)
 
-def word():
-    if request.method == 'POST':
-        word = str(request.form['text'])
-        lang = str(request.form['lang'])
-    else:
-        word = str(request.args.get('text'))
-        lang = str(request.args.get('lang'))
-
-    if word == 'None' and lang == 'None':
-        return render_template('index.html', word={'entered': word}, data={})

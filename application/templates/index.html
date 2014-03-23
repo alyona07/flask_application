@@ -1,54 +1,22 @@
 <!DOCTYPE html>
 <html>
-
-<form>
-<input value="{{ word.entered }}" name="text">
-
-
-</form>
-
+<head>
+    <title>Input data</title>
+</head>
 <body>
-<form action="{{data.title}}" enctype="form-data" method="GET">
-<input value="{{ data.layout }}" name="text">
-<input value="{{ data.some }}" name="text1">
-<input type="submit" value="  GO  ">
 
-    </form>
- <title>{{ data_new.title }}</title>
-
-    <h1>{{ data_new.header }}</h1>
- <table width="95%" border="2" cellspacing="1" bordercolor="#FF0000">
-     <tr>
-      <td align="center" width="33%" height="100px" bgcolor="#32CD32">ячейка 1</td>
-      <td align="center" width="33%" height="100px" bgcolor="#FFFF00">ячейка 2</td>
-      <td align="center" width="33%" height="" bgcolor="#F4A460">ячейка 3</td>
-    </tr>
-    <tr>
-    <td align="center" width="33%" height="100px" bgcolor="#C41E3A">ячейка 4</td>
-    <td align="center" width="33%" height="100px" bgcolor="#0FFDB9">ячейка 5</td>
-    <td align="center" width="33%" height="100px" bgcolor="#990066">ячейка 6</td>
-   </tr>
-  </table>
-
+<h2>Creating table</h2>
 <hr>
+<h3>Enter data for table:</h3>
+<form method="POST">
+<label>Cell_1:<input type="text" name="text"></label>
+<label>Cell_2:<input type="text" name="text1"></label>
+<label>Cell_3:<input type="text" name="text2"></label>
+<label>Cell_4:<input type="text" name="text3"></label>
+<input type="submit" value=" GO " name="1">
+</form>
 <hr>
+<a href="table"><button>Create table!</button></a>
 
- <table width="95%" border="2" cellspacing="1" bordercolor="#FF0000">
-     {% for line in data_new.lines %}
-         {% if line.title == "0" %}
-             <tr bgcolor="#32CD32">
-             {% for cell in line.columns %}
-                <td align="center" height="100px">{{ cell}}</td>
-             {% endfor %}
-         {% else %}
-              <tr bgcolor="#F4A460">
-              {% for cell in line.columns %}
-                 <td align="center" height="100px">{{ cell}}</td>
-              {% endfor %}
-         {% endif %}
-               </tr>
-     {% endfor %}
-</table>
 </body>
 </html>
-
