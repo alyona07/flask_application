@@ -25,28 +25,20 @@ Just a test enter
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        word = str(request.form['text'])
-        some1 = str(request.form['text1'])
-        some2 = str(request.form['text2'])
-        some3 = str(request.form['text3'])
-
-    else:
-        word = str(request.args.get('text'))
-        some1 = str(request.args.get('text1'))
-        some2 = str(request.args.get('text2'))
-        some3 = str(request.args.get('text3'))
+    some = []
     f = open('text.txt', 'a')
-    f.write(word)
-    f.write('\t')
-    f.write(some1)
-    f.write('\t')
-    f.write(some2)
-    f.write('\t')
-    f.write(some3)
+    if request.method == 'POST':
+        for i in range(0, 4, 1):
+            some.append(str(request.form['text'+str(i)]))
+            f.write(str(some[i]))
+            f.write('\t')
+    else:
+        for i in range(0, 4, 1):
+            some.append(str(request.args.get('text'+str(i))))
+            f.write(str(some[i]))
+            f.write('\t')
     f.write('\n')
     f.close()
-
     return render_template('index.html')
 
 if __name__ == "__main__":
