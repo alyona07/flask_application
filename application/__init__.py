@@ -27,16 +27,13 @@ Just a test enter
 def index():
     some = []
     f = open('text.txt', 'a')
-    if request.method == 'POST':
-        for i in range(0, 4, 1):
+    for i in range(0, 4, 1):
+        if request.method == 'POST':
             some.append(str(request.form['text'+str(i)]))
-            f.write(str(some[i]))
-            f.write('\t')
-    else:
-        for i in range(0, 4, 1):
+        else:
             some.append(str(request.args.get('text'+str(i))))
-            f.write(str(some[i]))
-            f.write('\t')
+    f.write(str(some[i]))
+    f.write('\t')
     f.write('\n')
     f.close()
     return render_template('index.html')
