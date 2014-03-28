@@ -25,18 +25,18 @@ Just a test enter
 
 
 def get_data():
-    some = []
+    some_list = []
     for i in range(0, 4, 1):
         if request.method == 'POST':
-            some.append(str(request.form['text'+str(i)]))
+            some_list.append(str(request.form['text'+str(i)]))
         else:
-            some.append(str(request.args.get('text'+str(i))))
-    return some
+            some_list.append(str(request.args.get('text'+str(i))))
+    return some_list
 
-def func_1(some):
+def func_1(some_list):
     with open('text.txt', 'a') as f:
-        for i in range(0, 4, 1):
-            f.write(str(some[i]))
+        for item in some_list:
+            f.write(item)
             f.write('\t')
         f.write('\n')
     f.close()
