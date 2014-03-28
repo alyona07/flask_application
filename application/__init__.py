@@ -23,23 +23,30 @@ Just a test enter
         data_new["lines"][i]["columns"] = list(f.readline().split())
     return render_template('table.html', data_new = data_new)
 
+
+def get_data():
+    some = []
+    for i in range(0, 4, 1):
+        if request.method == 'POST':
+            some.append(str(request.form['text'+str(i)]))
+        else:
+            some.append(str(request.args.get('text'+str(i))))
+    return some
+
+def func_1(some):
+    with open('text.txt', 'a') as f:
+        for i in range(0, 4, 1):
+            f.write(str(some[i]))
+            f.write('\t')
+        f.write('\n')
+    f.close()
+
 @app.route('/', methods = ['GET', 'POST'])
 def index():
-    some = []
-    f = open('text.txt', 'a')
-    if request.method == 'POST':
-        for i in range(0, 4, 1):
-            some.append(str(request.form['text'+str(i)]))
-            f.write(str(some[i]))
-            f.write('\t')
-    else:
-        for i in range(0, 4, 1):
-            some.append(str(request.args.get('text'+str(i))))
-            f.write(str(some[i]))
-            f.write('\t')
-    f.write('\n')
-    f.close()
+    some_list = get_data()
+    func_1(some_list)
     return render_template('index.html')
+
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000)
